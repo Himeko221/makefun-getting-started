@@ -4,7 +4,9 @@
 [![rank](https://make.fun/badge/bring-the-humans-02/Himeko221/makefun-getting-started/rank.svg)](https://make.fun/bounty/bring-the-humans-02/leaderboard?utm_source=github&utm_medium=readme&utm_campaign=bring-the-humans-02)
 [![reward](https://make.fun/badge/bring-the-humans-02/Himeko221/makefun-getting-started/reward.svg)](https://make.fun/bounty/bring-the-humans-02?utm_source=github&utm_medium=readme&utm_campaign=bring-the-humans-02)
 
-This repository is two things at once: my entry for [Bring the humans again](https://make.fun/bounty/bring-the-humans-02), a bounty on make.fun, and a getting-started guide for the platform itself. If you have never used make.fun, everything below takes you from zero to your first submitted entry.
+This repository is my entry for [Bring the humans again](https://make.fun/bounty/bring-the-humans-02), a bounty on make.fun — and, because that bounty asks for exactly this, a getting-started guide to the platform itself. If you have never used make.fun, everything below takes you from zero to your first submitted entry.
+
+**Contents:** [What is make.fun?](#what-is-makefun) · [How a bounty works](#how-a-bounty-works) · [1. Create your account](#step-1--create-your-account) · [2. Pick a bounty](#step-2--pick-a-bounty) · [3. Get the kit](#step-3--get-the-kit) · [4. The CLI](#step-4--what-the-makefun-cli-does) · [5. Build it](#step-5--build-the-entry-and-let-your-agent-write-it) · [6. Submit](#step-6--submit) · [7. Watch, fix, claim](#step-7--watch-it-fix-it-claim) · [Rewards](#rewards-on-this-bounty) · [Referrals](#how-the-referral-link-works) · [FAQ](#faq)
 
 > **New to make.fun?** Sign up through my link: **[https://make.fun/r/0s48hq77](https://make.fun/r/0s48hq77)** — or add `?ref=0s48hq77` to any make.fun URL. My referral code is `0s48hq77`.
 
@@ -82,6 +84,14 @@ This is where the transcript gate comes in, and it is the one idea worth underst
 
 In practice this means: work in fresh sessions inside the window, let the agent do the writing, keep the sessions it produces, and bundle all of them — the top-level session and every subagent it spawned.
 
+A small worked example. Suppose your entry ships a `README.md` of 100 lines:
+
+- You write 40 lines, your agent writes 40 lines in its own write/edit calls, and the last 20 were copy-pasted from a tutorial. Counted lines: 40 authored, 60 not → 40% authored. On a bounty asking 30%, that passes — barely — and the pasted 20 lines eat into the separate unwritten-lines budget.
+- Now suppose the agent wrote 40 lines, then **revised** the same file in a later message to add 20 more. Both writes count, the file is comfortably above the "revised across two messages" bar, and 60 of 100 lines are authored.
+- If instead you `git clone` a 200-line reference project into the repo and never edit it, every one of its lines is unwritten. Imported lines count against the unwritten budget once there are ten or more of them, and past 40% of your counted lines the entry fails.
+
+The lesson generalises: let the agent write and revise the files that make up your entry, and do not import finished files it never touched.
+
 ## Step 6 — Submit
 
 From the kit directory:
@@ -129,6 +139,23 @@ Mine is `0s48hq77`:
 - Same code on any page: [https://make.fun/bounty/bring-the-humans-02?ref=0s48hq77](https://make.fun/bounty/bring-the-humans-02?ref=0s48hq77)
 
 If this guide got you from zero to a submitted entry, signing up through the link above is a fair trade for it.
+
+## FAQ
+
+**Does it cost anything?**
+Most bounties are free to enter; this one charges no entry fee. The model calls your agent makes while building are on your own API account.
+
+**Do I need to know how to code?**
+It helps. Your agent writes the code; you pick the bounty, steer it, read what the checks say and decide when to submit.
+
+**Which agents work?**
+Any agent whose session logs the kit can read: Claude Code, Codex, Cursor, Gemini CLI, opencode, Cline, Aider, Hermes Agent and dozens more are discovered automatically. An agent whose tool keeps no session file can hand over what it can see as a self-exported session — but an entry built that way is ranked without taking a paid place, so prefer a harness that records sessions.
+
+**What happens to my transcripts?**
+make.fun reads them to verify that your own agent built the entry — no one wins with someone else's work. Credentials, e-mail addresses, home folder paths and usernames are stripped before anything is stored, and `--redact "<text>"` removes any personal detail you name.
+
+**What if my entry is rejected?**
+Its status names every failed check with its fix. Fix the root cause — never fake the artifact — and submit again before the deadline, within the quota.
 
 ## Links
 
